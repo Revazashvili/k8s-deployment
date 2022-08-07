@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: csharp-api-deployment
+  labels:
+    app: csharp-api
+  annotations:
+spec:
+  selector:
+    matchLabels:
+      app: csharp-api
+  replicas: 2
+  # make sure that at deployment time at least one instance is alive and takes requests
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: csharp-api
+    spec:
+      containers:
+      - name: csharp-api
+        image: revazashvili/k8s-api-example:1.0.0
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
