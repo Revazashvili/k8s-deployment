@@ -1,4 +1,4 @@
-## Run web api in docker
+# Run web api in docker
 
 clone repository and build and run image locally
 
@@ -14,11 +14,11 @@ or run image from docker hub
 docker run revazashvili/k8s-api-example:1.0.0
 ```
 
-## Deploy c# web api on k8s
+<br/>
 
+# Deploy c# web api on k8s
 
-
-# Automated
+## Automated
 
 ```sh
 cd k8s-deployment/csharp/
@@ -28,7 +28,7 @@ chmod +x deploy.sh
 
 or deploy manually
 
-# Namespace
+## Namespace
 
 create namespace and resources for api
 
@@ -42,7 +42,7 @@ display namespaces
 kubectl get namespace
 ```
 
-# Deployment
+## Deployment
 
 apply deployment file
 
@@ -66,7 +66,7 @@ you can check running pod logs
 kubectl -n csharp logs <POD_NAME>
 ```
 
-# Service
+## Service
 
 apply service file
 
@@ -86,7 +86,9 @@ describe service, check that Endpoints is not empty, if empty pod can't take req
 kubectl -n csharp describe svc csharp-api-service
 ```
 
-## Stop deployment
+<br/>
+
+# Stop deployment
 
 list deployments, you will see 'csharp-api-deployment'
 
