@@ -1,0 +1,16 @@
+version: '3.4'
+services:
+  api:
+    build: 
+      context: .
+    container_name: k8s-go-api-example
+    image: revazashvili/k8s-go-api-example:1.0.0
+    ports:
+      - 80:80
+    volumes:
+      - ./src/:/api
+    # working_dir: /api
+    # entrypoint: /bin/sh
+    # stdin_open: true
+    # tty: true
+    
