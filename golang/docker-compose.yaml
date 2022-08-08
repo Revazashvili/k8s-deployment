@@ -6,7 +6,7 @@ services:
     container_name: k8s-go-api-example
     image: revazashvili/k8s-go-api-example:1.0.0
     ports:
-      - 80:80
+      - 8080:80
     volumes:
       - ./src/:/api
     # working_dir: /api
