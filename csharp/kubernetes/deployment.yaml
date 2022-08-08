@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: csharp-api-deployment
+  namespace: csharp
   labels:
     app: csharp-api
   annotations:
