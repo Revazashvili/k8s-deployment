@@ -1,4 +1,4 @@
 apiVersion: v1
-King: Namespace
+Kind: Namespace
 metadata:
   name: golang
