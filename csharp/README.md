@@ -47,7 +47,7 @@ kubectl get namespace
 apply deployment file
 
 ```sh
-kubectl -n csharp apply -f ./kubernetes/deployment.yaml
+kubectl apply -f ./kubernetes/deployment.yaml
 ```
 
 display resources under namespace
@@ -71,7 +71,7 @@ kubectl -n csharp logs <POD_NAME>
 apply service file
 
 ```sh
-kubectl -n csharp apply -f ./kubernetes/service.yaml
+kubectl apply -f ./kubernetes/service.yaml
 ```
 
 check service, external ip is localhost
