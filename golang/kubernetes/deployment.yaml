@@ -27,7 +27,7 @@ spec:
         image: revazashvili/k8s-go-api-example:1.0.0
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 8080
         resources:
           requests:
             memory: "64Mi"
