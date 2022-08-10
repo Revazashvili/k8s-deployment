@@ -22,6 +22,10 @@ kubectl apply -f ./kubernetes/namespace.yaml
 cecho "GREEN" "display namespace"
 kubectl get namespace
 
+# config map
+cecho "GREEN" "apply config map"
+kubectl apply -f ./kubernetes/config.yaml
+
 # deployment
 cecho "GREEN" "apply deployment"
 kubectl apply -f ./kubernetes/deployment.yaml

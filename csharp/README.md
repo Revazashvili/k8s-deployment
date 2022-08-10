@@ -42,6 +42,20 @@ display namespaces
 kubectl get namespace
 ```
 
+## ConfigMap
+
+apply config map
+
+```sh
+kubectl apply -f ./kubernetes/config.yaml
+```
+
+display config map
+
+```sh
+kubectl -n csharp get configMap
+```
+
 ## Deployment
 
 apply deployment file
