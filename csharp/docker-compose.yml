@@ -9,6 +9,7 @@ services:
       - 8081:80
     volumes:
       - ./src/:/api
+      - ./config/appsettings.Production.json:/app/appsettings.Production.json
     # working_dir: /api
     # entrypoint: /bin/bash
     # stdin_open: true
