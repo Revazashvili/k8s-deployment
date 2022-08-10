@@ -22,12 +22,20 @@ spec:
       labels:
         app: csharp-api
     spec:
+      volumes:
+      - name: config
+        configMap:
+          name: config
       containers:
       - name: csharp-api
         image: revazashvili/k8s-api-example:1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        volumeMounts:
+        - name: config
+          mountPath: /app/appsettings.Production.json
+          subPath: appsettings.Production.json
         resources:
           requests:
             memory: "64Mi"
@@ -41,4 +49,3 @@ spec:
             port: 8081
           initialDelaySeconds: 3
           periodSeconds: 3
-

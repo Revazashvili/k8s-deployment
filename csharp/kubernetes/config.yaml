@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+  namespace: csharp
+data:
+  appsettings.Production.json: |-
+    {
+      "Summaries": [
+          "Freezing", 
+          "Bracing", 
+          "Chilly", 
+          "Cool", 
+          "Mild", 
+          "Warm", 
+          "Balmy", 
+          "Hot", 
+          "Sweltering", 
+          "Scorching"
+      ]
+    }
