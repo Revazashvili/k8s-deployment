@@ -6,16 +6,11 @@ namespace api.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
+    private static string[] _summaries = {};
+    
+    public WeatherForecastController(IConfiguration configuration)
     {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-    private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
-    {
-        _logger = logger;
+        _summaries = configuration.GetSection("Summaries").Get<string[]>();
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
@@ -25,7 +20,7 @@ public class WeatherForecastController : ControllerBase
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+            Summary = _summaries[Random.Shared.Next(_summaries.Length)]
         })
         .ToArray();
     }
