@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: config
+  name: csharp-config
   namespace: csharp
 data:
   appsettings.Production.json: |-
@@ -17,5 +17,9 @@ data:
           "Hot", 
           "Sweltering", 
           "Scorching"
-      ]
+      ],
+      "Postgres":{
+        "Host":"postgres-service",
+        "Port":"5432"
+      }
     }

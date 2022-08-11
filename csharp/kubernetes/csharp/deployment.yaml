@@ -25,7 +25,7 @@ spec:
       volumes:
       - name: config
         configMap:
-          name: config
+          name: csharp-config
       containers:
       - name: csharp-api
         image: revazashvili/k8s-api-example:1.0.0
@@ -36,6 +36,17 @@ spec:
         - name: config
           mountPath: /app/appsettings.Production.json
           subPath: appsettings.Production.json
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: csharp-secret
+              key: postgres-user
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: csharp-secret
+              key: postgres-password
         resources:
           requests:
             memory: "64Mi"
