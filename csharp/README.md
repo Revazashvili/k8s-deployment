@@ -21,7 +21,7 @@ docker run revazashvili/k8s-api-example:1.0.0
 ## Automated
 
 ```sh
-cd k8s-deployment/csharp/
+cd k8s-deployment/csharp/kubernetes
 chmod +x deploy.sh
 ./deploy.sh
 ```
@@ -33,76 +33,39 @@ or deploy manually
 create namespace and resources for api
 
 ```sh
-kubectl apply -f ./kubernetes/namespace.yaml
+kubectl apply -f namespace.yaml
 ```
 
-display namespaces
-
-```sh
-kubectl get namespace
-```
-
-## ConfigMap
+## CSharp
 
 apply config map
 
 ```sh
-kubectl apply -f ./kubernetes/config.yaml
+kubectl apply -f ./charp/config.yaml
+kubectl apply -f ./csharp/secret.yaml
+kubectl apply -f ./csharp/service.yaml
+kubectl apply -f ./csharp/deployment.yaml
 ```
 
-display config map
-
-```sh
-kubectl -n csharp get configMap
-```
-
-## Deployment
+## Postgres
 
 apply deployment file
 
 ```sh
-kubectl apply -f ./kubernetes/deployment.yaml
+kubectl apply -f ./postgres/secret.yaml
+kubectl apply -f ./postgres/service.yaml
+kubectl apply -f ./postgres/deployment.yaml
 ```
 
-display resources under namespace
+## Display resources under namespace
 
 ```sh
 kubectl get deploy -n csharp
 ```
 
-```sh display running pods
-kubectl -n csharp get pod
-```
-
-you can check running pod logs
-
-```sh
-kubectl -n csharp logs <POD_NAME>
-```
-
-## Service
-
-apply service file
-
-```sh
-kubectl apply -f ./kubernetes/service.yaml
-```
-
-check service, external ip is localhost
-
-```sh
-kubectl -n csharp get svc
-```
-
-describe service, check that Endpoints is not empty, if empty pod can't take requests
-
-```sh
-kubectl -n csharp describe svc csharp-api-service
-```
-
 <br/>
 
-# Stop deployment
+# Delete deployment
 
 list deployments, you will see 'csharp-api-deployment'
 
@@ -114,4 +77,12 @@ delete deploy
 
 ```sh
 kubectl delete deploy csharp-api-deployment -n csharp
+```
+
+# Delete Namespace
+
+delete deploy
+
+```sh
+kubectl delete ns csharp
 ```
