@@ -1,7 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddJsonFile("secrets.json");
-
 builder.Services.AddHealthChecks();
 
 builder.Services.AddControllers();

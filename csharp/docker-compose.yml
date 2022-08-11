@@ -10,7 +10,9 @@ services:
     volumes:
       - ./src/:/api
       - ./config/appsettings.Production.json:/app/appsettings.Production.json
-      - ./secret/secrets.json:/app/secrets.json
+    environment:
+      - POSTGRES_USER=bGV2YW5yZXZhemFzaHZpbGl1c2VybmFtZQ==
+      - POSTGRES_PASSWORD=bGV2YW5yZXZhemFzaHZpbGlwYXNzd29yZA==
     # working_dir: /api
     # entrypoint: /bin/bash
     # stdin_open: true

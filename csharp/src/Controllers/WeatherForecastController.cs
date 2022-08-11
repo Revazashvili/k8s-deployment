@@ -4,11 +4,17 @@ using Npgsql;
 
 namespace api.Controllers;
 
+public class PostgresConfig
+{
+    public string Host { get; set; }
+    public int Port { get; set; }
+}
+
 [ApiController]
 public class WeatherForecastController : ControllerBase
 {
     private static string[] _summaries = {};
-    private readonly string _postgresConnection;
+    private readonly string _postgresConnectionString;
     private const string DbName = "Weather";
     private const string DropDbCommand = $"DROP DATABASE IF EXISTS {DbName};";
     private const string CreateDbCommand = $"CREATE DATABASE {DbName};";
@@ -23,20 +29,23 @@ public class WeatherForecastController : ControllerBase
     public WeatherForecastController(IConfiguration configuration)
     {
         _summaries = configuration.GetSection("Summaries").Get<string[]>();
-        _postgresConnection = configuration.GetConnectionString("Postgres");
+        var postgresUser = configuration.GetValue<string>("POSTGRES_USER");
+        var postgresPassword = configuration.GetValue<string>("POSTGRES_PASSWORD");
+        var postgresConfig = configuration.GetSection("Postgres").Get<PostgresConfig>();
+        _postgresConnectionString = $"User ID={postgresUser};Password={postgresPassword};Host={postgresConfig.Host};Port={postgresConfig.Port};";
     }
 
     [HttpGet("/weathers")]
     public IEnumerable<WeatherForecast> Weathers()
     {
-        using var connection = new NpgsqlConnection(_postgresConnection);
+        using var connection = new NpgsqlConnection(_postgresConnectionString);
         return connection.Query<WeatherForecast>("select * from Weathers");
     }
 
     [HttpGet("/seed")]
     public IActionResult Seed()
     {
-        using var connection = new NpgsqlConnection(_postgresConnection);
+        using var connection = new NpgsqlConnection(_postgresConnectionString);
         var weathers = Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
@@ -59,7 +68,7 @@ public class WeatherForecastController : ControllerBase
     [HttpGet("/setup")]
     public IActionResult CreateDatabaseAndTable()
     {
-        using var connection = new NpgsqlConnection(_postgresConnection);
+        using var connection = new NpgsqlConnection(_postgresConnectionString);
         connection.Execute(DropDbCommand);
         connection.Execute(CreateDbCommand);
         connection.Execute(CreateTableCommand);
