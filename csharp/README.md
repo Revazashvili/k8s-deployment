@@ -8,12 +8,6 @@ cd k8s-deployment/csharp/
 docker-compose up
 ```
 
-or run image from docker hub
-
-```sh
-docker run revazashvili/k8s-api-example:1.0.0
-```
-
 <br/>
 
 # Deploy c# web api on k8s
