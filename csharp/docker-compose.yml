@@ -10,6 +10,7 @@ services:
     volumes:
       - ./src/:/api
       - ./config/appsettings.Production.json:/app/appsettings.Production.json
+      - ./secret/secrets.json:/app/secrets.json
     # working_dir: /api
     # entrypoint: /bin/bash
     # stdin_open: true

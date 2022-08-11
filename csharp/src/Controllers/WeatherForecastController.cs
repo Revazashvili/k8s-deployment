@@ -11,6 +11,9 @@ public class WeatherForecastController : ControllerBase
     public WeatherForecastController(IConfiguration configuration)
     {
         _summaries = configuration.GetSection("Summaries").Get<string[]>();
+
+        var mongoConnectionString = configuration.GetConnectionString("MongoConnection");
+        Console.WriteLine($"Mongo Connection: {mongoConnectionString}");
     }
 
     [HttpGet(Name = "GetWeatherForecast")]

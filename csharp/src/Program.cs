@@ -1,7 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddJsonFile("secrets.json");
+
 builder.Services.AddHealthChecks();
-// Add services to the container.
 
 builder.Services.AddControllers();
 
