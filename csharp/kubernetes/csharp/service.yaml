@@ -9,5 +9,5 @@ spec:
     app: csharp-api
   ports:
     - protocol: TCP
-      port: 8081
+      port: 7654
       targetPort: 80
