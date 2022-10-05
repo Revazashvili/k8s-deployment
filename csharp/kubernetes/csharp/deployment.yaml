@@ -10,6 +10,7 @@ spec:
   selector:
     matchLabels:
       app: csharp-api
+  # if not set, uses autoscale see: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
   replicas: 2
   # make sure that at deployment time at least one instance is alive and takes requests
   strategy:
