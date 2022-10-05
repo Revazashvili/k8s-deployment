@@ -58,5 +58,5 @@ spec:
         #   httpGet:
         #     path: /healthz
         #     port: 7654
-          initialDelaySeconds: 3
-          periodSeconds: 3
+        #  initialDelaySeconds: 3
+        #  periodSeconds: 3
